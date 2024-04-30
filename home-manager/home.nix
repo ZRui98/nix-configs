@@ -36,10 +36,11 @@
   };
 
   # Add stuff for your user as you see fit:
-  programs.neovim.enable = true;
-  home.packages = with pkgs; [
-    fzf
-  ];
+  programs.neovim = {
+    viAlias = true;
+    vimAlias = true;
+    enable = true;
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -47,6 +48,26 @@
     enable = true;
     userEmail = "ciguatera.z.rui@gmail.com";
     userName = "Rui Zhu";
+  };
+
+  programs.tmux = {
+    enable = true;
+    shell = "\${pkgs.zsh}/bin/zsh";
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zsh = {
+    enable = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+    tmux.enableShellIntegration = true;
   };
 
   # Nicely reload system units when changing configs
