@@ -18,7 +18,7 @@
     nameservers = [ "8.8.8.8" ];
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 80 443 ];
+      allowedTCPPorts = [ 80 443 8000 ];
     };
   };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -58,8 +58,15 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "triton";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "komga" "wheel" ];
     packages = with pkgs; [];
+  };
+
+  services.komga = {
+    enable = true;
+    user = "triton";
+    port = 8000;
+    group = "komga";
   };
 
   # Enable automatic login for the user.
