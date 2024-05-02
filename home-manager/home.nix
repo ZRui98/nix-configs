@@ -70,6 +70,8 @@
     tmux.enableShellIntegration = true;
   };
 
+  home.packages = with pkgs; [ unzip ];
+
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
