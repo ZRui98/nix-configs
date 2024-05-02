@@ -43,8 +43,6 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_CA.UTF-8";
 
-  services.sshd.enable=true;
-
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -54,12 +52,23 @@
   programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  services.openssh = {
+    enable = true;
+  };
+
   users.users.triton = {
     shell = pkgs.zsh;
     isNormalUser = true;
     description = "triton";
     extraGroups = [ "komga" "wheel" ];
     packages = with pkgs; [];
+    openssh = {
+      authorizedKeys = {
+        keys = [
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKGsKXcJjoE3zLx/SQPAfh4w7gJtSbxKP+feay5PFvTT triton@triton"
+	];
+      };
+    };
   };
 
   services.komga = {
