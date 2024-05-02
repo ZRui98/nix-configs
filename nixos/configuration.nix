@@ -54,6 +54,9 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   services.openssh = {
     enable = true;
+    settings = {
+      PasswordAuthentication = false;
+    };
   };
 
   users.users.triton = {
